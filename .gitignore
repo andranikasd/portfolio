@@ -1,0 +1,12 @@
+# Node (used only in CI)
+node_modules/
+package-lock.json
+package.json
+.stylelintrc.json
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
