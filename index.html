@@ -3,131 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="DevOps Engineer portfolio — infrastructure, CI/CD, cloud, and automation." />
+  <meta name="description" content="Andranik Grigoryan — DevOps Engineer. Infrastructure, CI/CD, cloud, and automation." />
   <title>Andranik Grigoryan — DevOps Engineer</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
 </head>
 <body>
 
-  <!-- ── NAV ─────────────────────────────────────────── -->
+  <!-- ── NAV ──────────────────────────────────────────────── -->
   <nav class="nav" id="nav">
-    <div class="nav__brand">
-      <span class="nav__prompt">~/portfolio</span><span class="nav__cursor blink">▮</span>
-    </div>
+    <div class="nav__brand">Andranik Grigoryan</div>
     <ul class="nav__links">
-      <li><a href="#about">about</a></li>
-      <li><a href="#skills">skills</a></li>
-      <li><a href="#projects">projects</a></li>
-      <li><a href="#experience">experience</a></li>
-      <li><a href="#contact">contact</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
+    <a href="cv.pdf" class="btn btn--outline" download>Download CV</a>
     <button class="nav__burger" aria-label="Toggle menu" id="burger">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- ── HERO ─────────────────────────────────────────── -->
+  <!-- ── HERO ─────────────────────────────────────────────── -->
   <header class="hero" id="home">
-    <div class="hero__terminal">
-      <div class="terminal__bar">
-        <span class="dot dot--red"></span>
-        <span class="dot dot--yellow"></span>
-        <span class="dot dot--green"></span>
-        <span class="terminal__title">bash — 80×24</span>
+    <div class="container">
+      <p class="hero__eyebrow">DevOps Engineer</p>
+      <h1 class="hero__name">Andranik Grigoryan</h1>
+      <p class="hero__tagline">
+        Building reliable infrastructure, streamlined CI/CD, and scalable cloud platforms.
+      </p>
+      <div class="hero__cta">
+        <a href="#contact" class="btn btn--primary">Get in Touch</a>
+        <a href="https://github.com/yourusername" class="btn btn--ghost" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/yourusername" class="btn btn--ghost" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <div class="terminal__body">
-        <p><span class="prompt">$</span> whoami</p>
-        <p class="output">Andranik Grigoryan</p>
-        <p><span class="prompt">$</span> cat role.txt</p>
-        <p class="output">DevOps / Platform Engineer</p>
-        <p><span class="prompt">$</span> echo $MISSION</p>
-        <p class="output">Shipping software fast, reliably, and at scale.</p>
-        <p><span class="prompt">$</span> <span class="blink">▮</span></p>
-      </div>
-    </div>
-    <div class="hero__cta">
-      <a href="#projects" class="btn btn--primary">View Projects</a>
-      <a href="#contact" class="btn btn--ghost">Get in Touch</a>
     </div>
   </header>
 
-  <!-- ── ABOUT ─────────────────────────────────────────── -->
-  <section class="section" id="about">
+  <!-- ── EXPERIENCE ───────────────────────────────────────── -->
+  <section class="section" id="experience">
     <div class="container">
-      <h2 class="section__title"><span class="accent">#</span> About</h2>
-      <div class="about__grid">
-        <div class="about__text">
-          <p>
-            I'm a DevOps/Platform Engineer focused on building robust CI/CD pipelines,
-            cloud-native infrastructure, and developer-friendly tooling. I bridge the
-            gap between development and operations by automating everything that can
-            (and should) be automated.
-          </p>
-          <p>
-            My work spans Kubernetes clusters, infrastructure-as-code, observability
-            stacks, and GitOps workflows. I believe that good infrastructure should
-            be invisible — developers ship, things just work.
-          </p>
-        </div>
-        <div class="about__stats">
-          <div class="stat-card">
-            <span class="stat-card__value">5+</span>
-            <span class="stat-card__label">Years Experience</span>
+      <h2 class="section__title">Experience</h2>
+      <ol class="timeline">
+
+        <li class="timeline__item">
+          <div class="timeline__header">
+            <div class="timeline__meta">
+              <h3 class="timeline__role">DevOps Engineer</h3>
+              <span class="timeline__company">Codedcloud</span>
+              <span class="timeline__badge">Contract</span>
+            </div>
+            <span class="timeline__date">2025 – Present · 10 mos</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-card__value">20+</span>
-            <span class="stat-card__label">Projects Delivered</span>
+          <ul class="timeline__bullets">
+            <li>Configured observability stack handling <strong>1 TB/day</strong> of telemetry (logs, traces, metrics), achieving 90% service monitoring coverage and improving incident response management</li>
+            <li>Implemented infrastructure-as-code for CDN configuration, establishing a controlled change process that significantly reduced manual errors and optimised deployment workflows</li>
+            <li>Optimised CI/CD pipelines, cutting total deployment time from <strong>30 to 12 minutes</strong></li>
+            <li>Automated manual operational tasks, reducing incidents and improving business processes</li>
+          </ul>
+        </li>
+
+        <li class="timeline__item">
+          <div class="timeline__header">
+            <div class="timeline__meta">
+              <h3 class="timeline__role">DevOps Engineer</h3>
+              <span class="timeline__company">Codeex</span>
+              <span class="timeline__badge">Full-time · On-site</span>
+            </div>
+            <span class="timeline__date">2024 – 2025 · 1 yr 6 mos · Yerevan, Armenia</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-card__value">99.9%</span>
-            <span class="stat-card__label">Uptime Goal</span>
+          <ul class="timeline__bullets">
+            <li>Migrated manually configured AWS environment to <strong>100% IaC coverage</strong>, improving security, auditability, and operational consistency</li>
+            <li>Designed and deployed a business-critical custom DNS service handling <strong>200M+ requests/day</strong> across 6 regions</li>
+            <li>Drove infrastructure cost reduction of <strong>30%</strong> through targeted optimisation initiatives</li>
+            <li>Built observability and incident response management systems, improving service availability and SLA compliance</li>
+          </ul>
+        </li>
+
+        <li class="timeline__item">
+          <div class="timeline__header">
+            <div class="timeline__meta">
+              <h3 class="timeline__role">DevOps Engineer</h3>
+              <span class="timeline__company">Goya CJSC</span>
+              <span class="timeline__badge">Full-time · On-site</span>
+            </div>
+            <span class="timeline__date">2022 – 2024 · 2 yrs 9 mos · Yerevan, Armenia</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-card__value">∞</span>
-            <span class="stat-card__label">Coffee Consumed</span>
-          </div>
-        </div>
-      </div>
+          <ul class="timeline__bullets">
+            <li>Designed and implemented on-premise Kubernetes infrastructure serving as an Internal Developer Platform (IDP)</li>
+            <li>Led the project from scope definition through final delivery</li>
+            <li>Collaborated with management and supply teams to ensure smooth project delivery operations</li>
+          </ul>
+        </li>
+
+      </ol>
     </div>
   </section>
 
-  <!-- ── SKILLS ─────────────────────────────────────────── -->
+  <!-- ── SKILLS ───────────────────────────────────────────── -->
   <section class="section section--alt" id="skills">
     <div class="container">
-      <h2 class="section__title"><span class="accent">#</span> Skills</h2>
+      <h2 class="section__title">Skills</h2>
       <div class="skills__grid">
 
         <div class="skill-group">
-          <h3 class="skill-group__title">Cloud & Infrastructure</h3>
+          <h3 class="skill-group__title">Cloud &amp; Infrastructure</h3>
           <ul class="tag-list">
             <li class="tag">AWS</li>
             <li class="tag">GCP</li>
             <li class="tag">Terraform</li>
-            <li class="tag">Pulumi</li>
             <li class="tag">Ansible</li>
           </ul>
         </div>
 
         <div class="skill-group">
-          <h3 class="skill-group__title">Containers & Orchestration</h3>
+          <h3 class="skill-group__title">Containers &amp; Orchestration</h3>
           <ul class="tag-list">
             <li class="tag">Kubernetes</li>
             <li class="tag">Docker</li>
             <li class="tag">Helm</li>
-            <li class="tag">Kustomize</li>
             <li class="tag">ArgoCD</li>
           </ul>
         </div>
 
         <div class="skill-group">
-          <h3 class="skill-group__title">CI/CD & GitOps</h3>
+          <h3 class="skill-group__title">CI/CD &amp; GitOps</h3>
           <ul class="tag-list">
             <li class="tag">GitHub Actions</li>
             <li class="tag">GitLab CI</li>
             <li class="tag">Jenkins</li>
             <li class="tag">FluxCD</li>
-            <li class="tag">Atlantis</li>
           </ul>
         </div>
 
@@ -138,29 +143,26 @@
             <li class="tag">Grafana</li>
             <li class="tag">Loki</li>
             <li class="tag">OpenTelemetry</li>
-            <li class="tag">Datadog</li>
           </ul>
         </div>
 
         <div class="skill-group">
-          <h3 class="skill-group__title">Languages & Scripting</h3>
+          <h3 class="skill-group__title">Networking &amp; DNS</h3>
+          <ul class="tag-list">
+            <li class="tag">MikroTik</li>
+            <li class="tag">BGP</li>
+            <li class="tag">DNS</li>
+            <li class="tag">CDN</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-group__title">Languages &amp; Scripting</h3>
           <ul class="tag-list">
             <li class="tag">Bash</li>
             <li class="tag">Python</li>
             <li class="tag">Go</li>
             <li class="tag">HCL</li>
-            <li class="tag">YAML</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <h3 class="skill-group__title">Security & Compliance</h3>
-          <ul class="tag-list">
-            <li class="tag">Vault</li>
-            <li class="tag">SOPS</li>
-            <li class="tag">Trivy</li>
-            <li class="tag">OPA / Gatekeeper</li>
-            <li class="tag">RBAC</li>
           </ul>
         </div>
 
@@ -168,203 +170,62 @@
     </div>
   </section>
 
-  <!-- ── PROJECTS ─────────────────────────────────────────── -->
-  <section class="section" id="projects">
+  <!-- ── CERTIFICATIONS ───────────────────────────────────── -->
+  <section class="section" id="certifications">
     <div class="container">
-      <h2 class="section__title"><span class="accent">#</span> Projects</h2>
-      <!-- Featured: live topology diagram -->
-      <a href="topoplogy.html" class="project-card project-card--featured" style="text-decoration:none;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.85rem;">
-        <div class="project-card__header">
-          <span class="project-card__icon">🏗️</span>
-          <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--green);border:1px solid rgba(63,185,80,.3);padding:0.15rem 0.5rem;border-radius:4px;">LIVE DIAGRAM →</span>
+      <h2 class="section__title">Certifications</h2>
+      <div class="certs__grid">
+
+        <div class="cert-card">
+          <div class="cert-card__body">
+            <p class="cert-card__issuer">Linux Foundation</p>
+            <h3 class="cert-card__name">Certified Kubernetes Administrator (CKA)</h3>
+          </div>
         </div>
-        <h3 class="project-card__title">On-Premise Datacenter — Network Topology</h3>
-        <p class="project-card__desc">
-          Interactive SVG diagram of a 3-node Proxmox HA cluster in Armenia: MSSQL Always On AG,
-          MikroTik CCR2004 firewall, LGTM observability stack, Synology NAS backup, and APC UPS power chain.
-        </p>
-        <ul class="tag-list tag-list--sm">
-          <li class="tag">Proxmox</li>
-          <li class="tag">MSSQL AG</li>
-          <li class="tag">MikroTik</li>
-          <li class="tag">10GbE</li>
-          <li class="tag">HA</li>
-        </ul>
-      </a>
 
-      <div class="projects__grid">
-
-        <article class="project-card">
-          <div class="project-card__header">
-            <span class="project-card__icon">🚀</span>
-            <div class="project-card__links">
-              <a href="#" class="icon-link" aria-label="GitHub" title="GitHub">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-              </a>
-            </div>
+        <div class="cert-card">
+          <div class="cert-card__body">
+            <p class="cert-card__issuer">Amazon Web Services</p>
+            <h3 class="cert-card__name">AWS Certified Solutions Architect</h3>
           </div>
-          <h3 class="project-card__title">Platform Engineering Toolkit</h3>
-          <p class="project-card__desc">
-            Internal developer platform built on Kubernetes with self-service namespaces,
-            GitOps-driven deployments via ArgoCD, and policy enforcement through OPA Gatekeeper.
-          </p>
-          <ul class="tag-list tag-list--sm">
-            <li class="tag">Kubernetes</li>
-            <li class="tag">ArgoCD</li>
-            <li class="tag">Terraform</li>
-            <li class="tag">OPA</li>
-          </ul>
-        </article>
+        </div>
 
-        <article class="project-card">
-          <div class="project-card__header">
-            <span class="project-card__icon">⚡</span>
-            <div class="project-card__links">
-              <a href="#" class="icon-link" aria-label="GitHub" title="GitHub">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3 class="project-card__title">Zero-Downtime Deploy Pipeline</h3>
-          <p class="project-card__desc">
-            GitHub Actions pipeline with automated canary rollouts, smoke tests,
-            Prometheus-gate checks, and auto-rollback on SLO breaches.
-          </p>
-          <ul class="tag-list tag-list--sm">
-            <li class="tag">GitHub Actions</li>
-            <li class="tag">Prometheus</li>
-            <li class="tag">Helm</li>
-            <li class="tag">Bash</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card__header">
-            <span class="project-card__icon">🔒</span>
-            <div class="project-card__links">
-              <a href="#" class="icon-link" aria-label="GitHub" title="GitHub">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3 class="project-card__title">Secrets Management at Scale</h3>
-          <p class="project-card__desc">
-            Centralized secrets pipeline using HashiCorp Vault with dynamic credentials,
-            External Secrets Operator, and SOPS-encrypted GitOps secrets rotation.
-          </p>
-          <ul class="tag-list tag-list--sm">
-            <li class="tag">Vault</li>
-            <li class="tag">SOPS</li>
-            <li class="tag">ESO</li>
-            <li class="tag">AWS KMS</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card__header">
-            <span class="project-card__icon">📊</span>
-            <div class="project-card__links">
-              <a href="#" class="icon-link" aria-label="GitHub" title="GitHub">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3 class="project-card__title">Observability Stack</h3>
-          <p class="project-card__desc">
-            Full-stack observability with Prometheus + Thanos for long-term metrics,
-            Grafana dashboards, Loki log aggregation, and OpenTelemetry tracing.
-          </p>
-          <ul class="tag-list tag-list--sm">
-            <li class="tag">Prometheus</li>
-            <li class="tag">Thanos</li>
-            <li class="tag">Grafana</li>
-            <li class="tag">Loki</li>
-          </ul>
-        </article>
-
-      </div><!-- /.projects__grid -->
+      </div>
     </div>
   </section>
 
-  <!-- ── EXPERIENCE ─────────────────────────────────────────── -->
-  <section class="section section--alt" id="experience">
-    <div class="container">
-      <h2 class="section__title"><span class="accent">#</span> Experience</h2>
-      <ol class="timeline">
-
-        <li class="timeline__item">
-          <div class="timeline__marker"></div>
-          <div class="timeline__content">
-            <span class="timeline__date">2022 – Present</span>
-            <h3 class="timeline__role">Senior DevOps Engineer</h3>
-            <span class="timeline__company">Company Name</span>
-            <p class="timeline__desc">
-              Led platform engineering initiatives, migrated workloads to Kubernetes,
-              reduced deployment lead time by 70%, and built the internal developer platform.
-            </p>
-          </div>
-        </li>
-
-        <li class="timeline__item">
-          <div class="timeline__marker"></div>
-          <div class="timeline__content">
-            <span class="timeline__date">2020 – 2022</span>
-            <h3 class="timeline__role">DevOps Engineer</h3>
-            <span class="timeline__company">Company Name</span>
-            <p class="timeline__desc">
-              Designed and maintained CI/CD pipelines for 10+ microservices,
-              implemented infrastructure-as-code with Terraform, and improved
-              system observability with Prometheus and Grafana.
-            </p>
-          </div>
-        </li>
-
-        <li class="timeline__item">
-          <div class="timeline__marker"></div>
-          <div class="timeline__content">
-            <span class="timeline__date">2018 – 2020</span>
-            <h3 class="timeline__role">Systems / Linux Administrator</h3>
-            <span class="timeline__company">Company Name</span>
-            <p class="timeline__desc">
-              Managed on-premise Linux servers, automated provisioning with Ansible,
-              and began the journey into cloud migrations and containerization.
-            </p>
-          </div>
-        </li>
-
-      </ol>
-    </div>
-  </section>
-
-  <!-- ── CONTACT ─────────────────────────────────────────── -->
-  <section class="section" id="contact">
+  <!-- ── CONTACT ───────────────────────────────────────────── -->
+  <section class="section section--alt" id="contact">
     <div class="container container--narrow">
-      <h2 class="section__title"><span class="accent">#</span> Contact</h2>
+      <h2 class="section__title">Contact</h2>
       <p class="contact__lead">
-        Open to interesting problems, collaborations, or just a good infrastructure chat.
+        Available for new opportunities, collaborations, or a conversation about infrastructure.
       </p>
       <div class="contact__links">
         <a href="mailto:your@email.com" class="contact-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           your@email.com
         </a>
         <a href="https://github.com/yourusername" class="contact-link" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
           github.com/yourusername
         </a>
         <a href="https://linkedin.com/in/yourusername" class="contact-link" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           linkedin.com/in/yourusername
+        </a>
+        <a href="cv.pdf" class="contact-link" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV (PDF)
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
   <footer class="footer">
     <div class="container">
-      <p>Built with plain HTML/CSS &amp; deployed via GitHub Actions &rarr; GitHub Pages</p>
-      <p class="footer__copy">&copy; 2026 Andranik Grigoryan</p>
+      <p>&copy; 2026 Andranik Grigoryan</p>
     </div>
   </footer>
 

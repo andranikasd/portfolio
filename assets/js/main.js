@@ -6,7 +6,6 @@ burger.addEventListener('click', () => {
   navLinks.classList.toggle('open');
 });
 
-// Close menu when a link is clicked
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
@@ -23,16 +22,16 @@ const observer = new IntersectionObserver(
 );
 
 document.querySelectorAll(
-  '.stat-card, .skill-group, .project-card, .timeline__item'
+  '.skill-group, .cert-card, .timeline__item'
 ).forEach(el => {
   el.classList.add('fade-in');
   observer.observe(el);
 });
 
-/* ── Nav scroll shadow ─────────────────────────────────── */
+/* ── Nav border on scroll ──────────────────────────────── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.style.boxShadow = window.scrollY > 10
-    ? '0 4px 20px rgba(0,0,0,0.4)'
+    ? '0 1px 12px rgba(0,0,0,0.08)'
     : '';
 });

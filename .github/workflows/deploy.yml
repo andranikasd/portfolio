@@ -2,9 +2,9 @@ name: CI / Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 # Allow only one concurrent deployment; cancel in-flight runs
 concurrency:
@@ -55,7 +55,7 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     # Only deploy on pushes to main, not on PRs
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
 
     environment:
       name: github-pages
