@@ -11,27 +11,32 @@ navLinks.querySelectorAll('a').forEach(link => {
 });
 
 /* ── Scroll-fade-in for sections ───────────────────────── */
-const observer = new IntersectionObserver(
-  entries => entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  }),
-  { threshold: 0.1 }
-);
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-document.querySelectorAll(
-  '.skill-group, .cert-card, .timeline__item'
-).forEach(el => {
-  el.classList.add('fade-in');
-  observer.observe(el);
-});
+if (!prefersReducedMotion) {
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.1 }
+  );
 
-/* ── Nav border on scroll ──────────────────────────────── */
+  document.querySelectorAll(
+    '.skill-group, .cert-card, .timeline__item'
+  ).forEach(el => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+}
+
+/* ── Nav shadow on scroll ──────────────────────────────── */
 const nav = document.getElementById('nav');
+
 window.addEventListener('scroll', () => {
   nav.style.boxShadow = window.scrollY > 10
-    ? '0 1px 12px rgba(0,0,0,0.08)'
+    ? '0 1px 12px rgb(0 0 0 / 8%)'
     : '';
-});
+}, { passive: true });

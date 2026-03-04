@@ -2,7 +2,6 @@
 :root {
   --bg: #fff;
   --bg-alt: #f8fafc;
-  --bg-card: #fff;
   --border: #e2e8f0;
   --text: #0f172a;
   --text-muted: #64748b;
@@ -35,6 +34,7 @@ body {
   font-size: 1rem;
   line-height: 1.7;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 img {
@@ -55,10 +55,27 @@ a:hover {
 ul,
 ol {
   list-style: none;
+  padding: 0;
 }
 
 strong {
   font-weight: 600;
+}
+
+/* ── FOCUS STYLES ────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ── SCROLL OFFSET (fixed nav compensation) ──────────────── */
+#home,
+#experience,
+#skills,
+#certifications,
+#contact {
+  scroll-margin-top: var(--nav-h);
 }
 
 /* ── NAV ─────────────────────────────────────────────────── */
@@ -98,10 +115,18 @@ strong {
   font-weight: 500;
   color: var(--text-muted);
   transition: color var(--transition);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav__links a:hover {
   color: var(--text);
+}
+
+/* Download CV in nav — desktop: hide; mobile: show in dropdown */
+.nav__cv-link {
+  display: none;
 }
 
 .nav__burger {
@@ -111,7 +136,10 @@ strong {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 10px 4px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav__burger span {
@@ -128,7 +156,7 @@ strong {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.5rem 1.2rem;
+  padding: 0.6rem 1.25rem;
   border-radius: var(--radius);
   font-size: 0.875rem;
   font-weight: 600;
@@ -136,6 +164,7 @@ strong {
   cursor: pointer;
   border: 1px solid transparent;
   white-space: nowrap;
+  min-height: 44px;
 }
 
 .btn--primary {
@@ -219,7 +248,7 @@ strong {
 }
 
 .hero__name {
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--text);
@@ -246,7 +275,6 @@ strong {
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 
 .timeline__item {
@@ -303,7 +331,6 @@ strong {
 .timeline__badge {
   font-size: 0.75rem;
   color: var(--text-muted);
-  font-weight: 400;
 }
 
 .timeline__date {
@@ -420,6 +447,7 @@ strong {
   color: var(--text-muted);
   transition: color var(--transition);
   font-weight: 500;
+  min-height: 44px;
 }
 
 .contact-link:hover {
@@ -439,6 +467,7 @@ strong {
 .fade-in {
   opacity: 0;
   transform: translateY(16px);
+  will-change: opacity, transform;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
@@ -447,7 +476,20 @@ strong {
   transform: none;
 }
 
-/* ── RESPONSIVE ──────────────────────────────────────────── */
+/* ── REDUCED MOTION ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── RESPONSIVE: TABLET ──────────────────────────────────── */
 @media (max-width: 768px) {
   .nav__links {
     display: none;
@@ -462,13 +504,34 @@ strong {
     right: 0;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
-    padding: 1.5rem 2rem;
-    gap: 1rem;
+    padding: 1rem 2rem 1.5rem;
+    gap: 0;
     z-index: 99;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 8%);
+  }
+
+  .nav__links.open a {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    min-height: 48px;
+  }
+
+  .nav__links.open .nav__cv-link {
+    display: block;
+  }
+
+  .nav__links.open .nav__cv-link a {
+    color: var(--accent);
+    font-weight: 600;
+    border-bottom: none;
   }
 
   .nav__burger {
     display: flex;
+  }
+
+  .nav .btn--outline {
+    display: none;
   }
 
   .skills__grid {
@@ -482,18 +545,50 @@ strong {
   .timeline__header {
     flex-direction: column;
   }
+
+  .timeline__date {
+    white-space: normal;
+  }
 }
 
-@media (max-width: 560px) {
-  .skills__grid {
-    grid-template-columns: 1fr;
+/* ── RESPONSIVE: MOBILE ──────────────────────────────────── */
+@media (max-width: 480px) {
+  .nav {
+    padding: 0 1.25rem;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
   }
 
   .hero {
     padding-top: calc(var(--nav-h) + 3rem);
   }
 
-  .nav .btn--outline {
-    display: none;
+  .hero__tagline {
+    font-size: 1rem;
+  }
+
+  .hero__cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__cta .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  .skills__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline__item {
+    padding: 1.5rem 0 1.5rem 1.5rem;
   }
 }

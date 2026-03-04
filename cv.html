@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andranik Grigoryan — CV</title>
+  <style>
+    /* ── BASE ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: #0f172a;
+      background: #fff;
+      padding: 2.4cm 2.2cm;
+      max-width: 21cm;
+      margin: 0 auto;
+    }
+
+    a { color: #1d4ed8; text-decoration: none; }
+    ul { list-style: none; padding: 0; }
+    strong { font-weight: 600; }
+
+    /* ── HEADER ──────────────────────────────────────────── */
+    .header {
+      border-bottom: 2px solid #1d4ed8;
+      padding-bottom: 0.7em;
+      margin-bottom: 1.2em;
+    }
+
+    .header__name {
+      font-size: 22pt;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #0f172a;
+      line-height: 1.1;
+    }
+
+    .header__title {
+      font-size: 11pt;
+      color: #1d4ed8;
+      font-weight: 600;
+      margin-top: 0.2em;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .header__contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3em 1.4em;
+      margin-top: 0.6em;
+      font-size: 9pt;
+      color: #475569;
+    }
+
+    .header__contacts span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3em;
+    }
+
+    /* ── SECTION ─────────────────────────────────────────── */
+    .section {
+      margin-bottom: 1.2em;
+    }
+
+    .section__title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #1d4ed8;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 0.2em;
+      margin-bottom: 0.75em;
+    }
+
+    /* ── EXPERIENCE ──────────────────────────────────────── */
+    .job {
+      margin-bottom: 1em;
+      page-break-inside: avoid;
+    }
+
+    .job:last-child { margin-bottom: 0; }
+
+    .job__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1em;
+    }
+
+    .job__role {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .job__date {
+      font-size: 8.5pt;
+      color: #64748b;
+      white-space: nowrap;
+    }
+
+    .job__company {
+      font-size: 9.5pt;
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+
+    .job__type {
+      font-size: 8.5pt;
+      color: #94a3b8;
+      margin-left: 0.4em;
+    }
+
+    .job__bullets {
+      list-style: disc;
+      padding-left: 1.1em;
+      margin-top: 0.35em;
+    }
+
+    .job__bullets li {
+      font-size: 9.5pt;
+      color: #334155;
+      margin-bottom: 0.2em;
+      line-height: 1.5;
+    }
+
+    /* ── SKILLS ──────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5em 1em;
+    }
+
+    .skill-row { font-size: 9.5pt; }
+
+    .skill-row__label {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .skill-row__tags { color: #475569; }
+
+    /* ── CERTIFICATIONS ──────────────────────────────────── */
+    .certs {
+      display: flex;
+      gap: 1.5em;
+    }
+
+    .cert {
+      font-size: 9.5pt;
+    }
+
+    .cert__name {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .cert__issuer {
+      color: #64748b;
+      font-size: 8.5pt;
+    }
+
+    /* ── PRINT ───────────────────────────────────────────── */
+    @media print {
+      body {
+        padding: 1.8cm 2cm;
+        font-size: 10pt;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header__name">Andranik Grigoryan</div>
+    <div class="header__title">DevOps Engineer</div>
+    <div class="header__contacts">
+      <span>theandranikgrigoryan@gmail.com</span>
+      <span>github.com/andranikasd</span>
+      <span>linkedin.com/in/andranik-grigoryan</span>
+    </div>
+  </header>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <h2 class="section__title">Experience</h2>
+
+    <div class="job">
+      <div class="job__header">
+        <span class="job__role">DevOps Engineer</span>
+        <span class="job__date">2025 – Present · 10 mos</span>
+      </div>
+      <div>
+        <span class="job__company">Codedcloud</span>
+        <span class="job__type">Contract</span>
+      </div>
+      <ul class="job__bullets">
+        <li>Configured observability stack handling <strong>1 TB/day</strong> of telemetry (logs, traces, metrics), achieving 90% service monitoring coverage and improving incident response management</li>
+        <li>Implemented infrastructure-as-code for CDN configuration, establishing a controlled change process that significantly reduced manual errors and optimised deployment workflows</li>
+        <li>Optimised CI/CD pipelines, cutting total deployment time from <strong>30 to 12 minutes</strong></li>
+        <li>Automated manual operational tasks, reducing incidents and improving business processes</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__header">
+        <span class="job__role">DevOps Engineer</span>
+        <span class="job__date">2024 – 2025 · 1 yr 6 mos · Yerevan, Armenia</span>
+      </div>
+      <div>
+        <span class="job__company">Codeex</span>
+        <span class="job__type">Full-time · On-site</span>
+      </div>
+      <ul class="job__bullets">
+        <li>Migrated manually configured AWS environment to <strong>100% IaC coverage</strong>, improving security, auditability, and operational consistency</li>
+        <li>Designed and deployed a business-critical custom DNS service handling <strong>200M+ requests/day</strong> across 6 regions</li>
+        <li>Reduced infrastructure costs by <strong>30%</strong> through targeted optimisation initiatives</li>
+        <li>Built observability and incident response management systems, improving service availability and SLA compliance</li>
+        <li>Achieved SOC 2 compliance and fulfilled AWS Partner Program infrastructure requirements, strengthening security posture and business credibility</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__header">
+        <span class="job__role">DevOps Engineer</span>
+        <span class="job__date">2022 – 2024 · 2 yrs 9 mos · Yerevan, Armenia</span>
+      </div>
+      <div>
+        <span class="job__company">Goya CJSC</span>
+        <span class="job__type">Full-time · On-site</span>
+      </div>
+      <ul class="job__bullets">
+        <li>Designed and implemented on-premise Kubernetes infrastructure serving as an Internal Developer Platform (IDP)</li>
+        <li>Led the project from scope definition through final delivery</li>
+        <li>Collaborated with management and supply teams to ensure smooth project delivery operations</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <h2 class="section__title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-row__label">Cloud &amp; Infrastructure</div>
+        <div class="skill-row__tags">AWS, GCP, Terraform, Ansible</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row__label">Containers &amp; Orchestration</div>
+        <div class="skill-row__tags">Kubernetes, Docker, Helm, ArgoCD</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row__label">CI/CD &amp; GitOps</div>
+        <div class="skill-row__tags">GitHub Actions, GitLab CI, Jenkins, FluxCD</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row__label">Observability</div>
+        <div class="skill-row__tags">Prometheus, Grafana, Loki, OpenTelemetry</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row__label">Networking &amp; DNS</div>
+        <div class="skill-row__tags">MikroTik, BGP, DNS, CDN</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row__label">Languages &amp; Scripting</div>
+        <div class="skill-row__tags">Bash, Python, Go, HCL</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section">
+    <h2 class="section__title">Certifications</h2>
+    <div class="certs">
+      <div class="cert">
+        <div class="cert__name">Certified Kubernetes Administrator (CKA)</div>
+        <div class="cert__issuer">Linux Foundation</div>
+      </div>
+      <div class="cert">
+        <div class="cert__name">AWS Certified Solutions Architect</div>
+        <div class="cert__issuer">Amazon Web Services</div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

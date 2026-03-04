@@ -46,6 +46,7 @@ This document describes the current state, design rules, and content of the port
 - Designed and deployed a business-critical custom DNS service handling 200M+ requests/day across 6 regions
 - Reduced infrastructure costs by 30% through targeted optimisation initiatives
 - Built observability and incident response management systems, improving service availability and SLA compliance
+- Managed and acheaved SOC2, AWS Partneres program infrastructure grades
 
 ---
 
@@ -96,10 +97,11 @@ This document describes the current state, design rules, and content of the port
 
 
 
-Github Username: andranikasd
-Email: theandranikgrigoryan@gmail.com
-linkedin: https://www.linkedin.com/in/andranik-grigoryan/
+### Links & Actions (resolved)
 
-### CHANGES
-- Generate PDF CV and put it here as well please
-- Make sure we have some icon on page top
+- GitHub: https://github.com/andranikasd
+- LinkedIn: https://www.linkedin.com/in/andranik-grigoryan/
+- Email: theandranikgrigoryan@gmail.com
+- `cv.pdf` — generated from `cv.html` via Chrome headless; regenerate with:
+  `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --print-to-pdf="$(pwd)/cv.pdf" --no-pdf-header-footer "file://$(pwd)/cv.html"`
+- Favicon: SVG data-URI with "AG" initials on blue `#1d4ed8` background, embedded in `<head>`
