@@ -21,6 +21,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
       <li class="nav__cv-link"><a href="cv.pdf" download>Download CV</a></li>
     </ul>
@@ -33,6 +34,10 @@
   <!-- ── HERO ─────────────────────────────────────────────── -->
   <header class="hero" id="home">
     <div class="container">
+      <p class="hero__availability">
+        <span class="hero__dot" aria-hidden="true"></span>
+        Available for new opportunities
+      </p>
       <p class="hero__eyebrow">DevOps Engineer</p>
       <h1 class="hero__name">Andranik Grigoryan</h1>
       <p class="hero__tagline">
@@ -45,6 +50,30 @@
       </div>
     </div>
   </header>
+
+  <!-- ── METRICS ───────────────────────────────────────────── -->
+  <div class="metrics">
+    <div class="container">
+      <div class="metrics__grid">
+        <div class="metric">
+          <span class="metric__value">1 TB/day</span>
+          <span class="metric__label">Telemetry handled</span>
+        </div>
+        <div class="metric">
+          <span class="metric__value">200M+</span>
+          <span class="metric__label">DNS requests served daily</span>
+        </div>
+        <div class="metric">
+          <span class="metric__value">30%</span>
+          <span class="metric__label">Infrastructure cost reduction</span>
+        </div>
+        <div class="metric">
+          <span class="metric__value">30→12 min</span>
+          <span class="metric__label">Deployment time cut</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ── EXPERIENCE ───────────────────────────────────────── -->
   <section class="section" id="experience">
@@ -214,8 +243,27 @@
     </div>
   </section>
 
+  <!-- ── PROJECTS ──────────────────────────────────────────── -->
+  <section class="section section--alt" id="projects">
+    <div class="container">
+      <h2 class="section__title">Featured Work</h2>
+      <div class="projects__grid">
+        <a href="topoplogy.html" class="project-card" target="_blank" rel="noopener">
+          <span class="project-card__tag">Infrastructure &middot; Networking</span>
+          <h3 class="project-card__title">On-Premise Datacenter Topology</h3>
+          <p class="project-card__desc">
+            Proxmox high-availability cluster running a Kubernetes Internal Developer Platform,
+            BGP-routed network with MikroTik, and a custom DNS service handling 200M+ requests/day
+            across 6 regions — documented as a living architecture diagram.
+          </p>
+          <span class="project-card__link">View diagram &#8594;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ── CONTACT ───────────────────────────────────────────── -->
-  <section class="section section--alt" id="contact">
+  <section class="section" id="contact">
     <div class="container container--narrow">
       <h2 class="section__title">Contact</h2>
       <p class="contact__lead">

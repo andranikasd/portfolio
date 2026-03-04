@@ -25,7 +25,7 @@ if (!prefersReducedMotion) {
   );
 
   document.querySelectorAll(
-    '.skill-group, .cert-card, .timeline__item'
+    '.skill-group, .cert-card, .timeline__item, .metric, .project-card'
   ).forEach(el => {
     el.classList.add('fade-in');
     observer.observe(el);
