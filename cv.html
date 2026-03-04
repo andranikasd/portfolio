@@ -5,17 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Andranik Grigoryan — CV</title>
   <style>
-    /* ── BASE ─────────────────────────────────────────────── */
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-      font-size: 10.5pt;
-      line-height: 1.55;
+      font-size: 9pt;
+      line-height: 1.4;
       color: #0f172a;
       background: #fff;
-      padding: 2.4cm 2.2cm;
-      max-width: 21cm;
+      padding: 1.25cm 1.8cm;
+      width: 21cm;
       margin: 0 auto;
     }
 
@@ -26,12 +30,12 @@
     /* ── HEADER ──────────────────────────────────────────── */
     .header {
       border-bottom: 2px solid #1d4ed8;
-      padding-bottom: 0.7em;
-      margin-bottom: 1.2em;
+      padding-bottom: 0.45em;
+      margin-bottom: 0.75em;
     }
 
     .header__name {
-      font-size: 22pt;
+      font-size: 18pt;
       font-weight: 700;
       letter-spacing: -0.03em;
       color: #0f172a;
@@ -39,49 +43,42 @@
     }
 
     .header__title {
-      font-size: 11pt;
+      font-size: 9pt;
       color: #1d4ed8;
       font-weight: 600;
-      margin-top: 0.2em;
+      margin-top: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
     }
 
     .header__contacts {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.3em 1.4em;
-      margin-top: 0.6em;
-      font-size: 9pt;
+      gap: 0.15em 1.2em;
+      margin-top: 0.35em;
+      font-size: 8.5pt;
       color: #475569;
-    }
-
-    .header__contacts span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3em;
     }
 
     /* ── SECTION ─────────────────────────────────────────── */
     .section {
-      margin-bottom: 1.2em;
+      margin-bottom: 0.6em;
     }
 
     .section__title {
-      font-size: 9.5pt;
+      font-size: 8pt;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       color: #1d4ed8;
       border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 0.2em;
-      margin-bottom: 0.75em;
+      padding-bottom: 0.15em;
+      margin-bottom: 0.45em;
     }
 
     /* ── EXPERIENCE ──────────────────────────────────────── */
     .job {
-      margin-bottom: 1em;
-      page-break-inside: avoid;
+      margin-bottom: 0.5em;
     }
 
     .job:last-child { margin-bottom: 0; }
@@ -90,59 +87,60 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 1em;
+      gap: 0.5em;
     }
 
     .job__role {
-      font-size: 11pt;
+      font-size: 10pt;
       font-weight: 700;
       color: #0f172a;
     }
 
     .job__date {
-      font-size: 8.5pt;
+      font-size: 8pt;
       color: #64748b;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .job__company {
-      font-size: 9.5pt;
+      font-size: 9pt;
       color: #1d4ed8;
       font-weight: 600;
     }
 
     .job__type {
-      font-size: 8.5pt;
+      font-size: 8pt;
       color: #94a3b8;
-      margin-left: 0.4em;
+      margin-left: 0.35em;
     }
 
     .job__bullets {
       list-style: disc;
-      padding-left: 1.1em;
-      margin-top: 0.35em;
+      padding-left: 1em;
+      margin-top: 0.2em;
     }
 
     .job__bullets li {
-      font-size: 9.5pt;
+      font-size: 8.5pt;
       color: #334155;
-      margin-bottom: 0.2em;
-      line-height: 1.5;
+      margin-bottom: 0.08em;
+      line-height: 1.38;
     }
 
     /* ── SKILLS ──────────────────────────────────────────── */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.5em 1em;
+      gap: 0.3em 0.8em;
     }
 
-    .skill-row { font-size: 9.5pt; }
+    .skill-row { font-size: 8.5pt; }
 
     .skill-row__label {
       font-weight: 700;
       color: #0f172a;
-      font-size: 8.5pt;
+      font-size: 7.5pt;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -155,9 +153,7 @@
       gap: 1.5em;
     }
 
-    .cert {
-      font-size: 9.5pt;
-    }
+    .cert { font-size: 8.5pt; }
 
     .cert__name {
       font-weight: 700;
@@ -166,20 +162,7 @@
 
     .cert__issuer {
       color: #64748b;
-      font-size: 8.5pt;
-    }
-
-    /* ── PRINT ───────────────────────────────────────────── */
-    @media print {
-      body {
-        padding: 1.8cm 2cm;
-        font-size: 10pt;
-      }
-
-      @page {
-        size: A4;
-        margin: 0;
-      }
+      font-size: 8pt;
     }
   </style>
 </head>
@@ -211,7 +194,7 @@
       </div>
       <ul class="job__bullets">
         <li>Configured observability stack handling <strong>1 TB/day</strong> of telemetry (logs, traces, metrics), achieving 90% service monitoring coverage and improving incident response management</li>
-        <li>Implemented infrastructure-as-code for CDN configuration, establishing a controlled change process that significantly reduced manual errors and optimised deployment workflows</li>
+        <li>Implemented infrastructure-as-code for CDN configuration, establishing a controlled change process that significantly reduced manual errors</li>
         <li>Optimised CI/CD pipelines, cutting total deployment time from <strong>30 to 12 minutes</strong></li>
         <li>Automated manual operational tasks, reducing incidents and improving business processes</li>
       </ul>
@@ -250,6 +233,23 @@
         <li>Collaborated with management and supply teams to ensure smooth project delivery operations</li>
       </ul>
     </div>
+
+    <div class="job">
+      <div class="job__header">
+        <span class="job__role">DevOps Engineer</span>
+        <span class="job__date">2020 – 2022 · 2 yrs 2 mos · Yerevan, Armenia</span>
+      </div>
+      <div>
+        <span class="job__company">Stone Valley LLC</span>
+        <span class="job__type">Full-time · Remote</span>
+      </div>
+      <ul class="job__bullets">
+        <li>Deployed and maintained ELK stack (Elasticsearch, Logstash, Kibana) for centralised log aggregation and real-time monitoring across production services</li>
+        <li>Built and managed Azure cloud infrastructure, supporting application workloads and ensuring high availability</li>
+        <li>Designed and implemented CI/CD pipelines, improving release automation and reducing deployment friction</li>
+        <li>Administered Linux-based server environments and automated routine operational tasks using Bash and Python</li>
+      </ul>
+    </div>
   </section>
 
   <!-- SKILLS -->
@@ -270,7 +270,7 @@
       </div>
       <div class="skill-row">
         <div class="skill-row__label">Observability</div>
-        <div class="skill-row__tags">Prometheus, Grafana, Loki, OpenTelemetry</div>
+        <div class="skill-row__tags">Prometheus, Grafana, Loki, OpenTelemetry, ELK</div>
       </div>
       <div class="skill-row">
         <div class="skill-row__label">Networking &amp; DNS</div>

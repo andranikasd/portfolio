@@ -59,6 +59,16 @@ This document describes the current state, design rules, and content of the port
 
 ---
 
+**4. Stone Valley LLC — DevOps Engineer (Full-time · Remote)**
+Jun 2020 – Jul 2022 · 2 yrs 2 mos · Yerevan, Armenia
+
+- Deployed and maintained ELK stack (Elasticsearch, Logstash, Kibana) for centralised log aggregation and real-time monitoring across production services
+- Built and managed Azure cloud infrastructure, supporting application workloads and ensuring high availability
+- Designed and implemented CI/CD pipelines, improving release automation and reducing deployment friction
+- Administered Linux-based server environments and automated routine operational tasks using Bash and Python
+
+---
+
 ### Skills
 
 | Group | Tags |
