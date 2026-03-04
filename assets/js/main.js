@@ -44,7 +44,7 @@ const nav = document.getElementById('nav');
 
 window.addEventListener('scroll', () => {
   nav.style.boxShadow = window.scrollY > 10
-    ? '0 1px 16px rgb(0 0 0 / 6%)'
+    ? '0 4px 32px rgb(0 0 0 / 60%)'
     : '';
 }, { passive: true });
 
