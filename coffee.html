@@ -244,26 +244,38 @@
     const yesBtn = document.getElementById('yes-btn');
 
     let attempts = 0;
+    let lastFlee = 0;
+    const PROXIMITY = 100; // px — button flees before mouse touches it
+    const COOLDOWN = 180;  // ms — minimum time between flees
 
     const taunts = [
-      'Too slow! 😄',
-      'Nice try.',
-      'Come on, it\'ll be fun!',
+      'Skill issue. 😄',
+      'bro just click yes',
+      'The button has trust issues.',
       'I saw that 👀',
-      'Coffee is always a good idea.',
-      'Your cursor isn\'t fast enough 😏',
-      'The button has opinions.',
-      'Maybe try clicking faster?',
-      'It\'s just a coffee…',
-      'The button is scared of you.',
-      'Have you considered: yes?',
-      'The no button has left the chat.',
-      'Skill issue.',
-      'Still no? Impressive dedication.',
-      '☕☕☕',
+      'My cursor is faster than yours and I don\'t even have one.',
+      'The button filed a restraining order.',
+      '404: Willingness to say no not found.',
+      'It\'s just a coffee, not a marriage proposal.',
+      'The button is running on Kubernetes. You can\'t stop it.',
+      'Have you tried turning your mouse off and on again?',
+      'Incident severity: P1. Button refuses to be clicked.',
+      'The button deployed to production. Good luck.',
+      'You\'re fighting a DevOps engineer\'s code. This was always going to end this way.',
+      'Alert: cursor too slow. SLA breached.',
+      'The button scaled horizontally. There are now 3 of it.',
+      'rm -rf /your-chances',
+      'git commit -m "no"  ← the button wrote this',
+      'The button is in a different availability zone.',
+      'Your click latency is too high.',
+      'The button passed all unit tests for escaping.',
+      'kubectl delete pod no-button — command not found.',
+      'Terraform plan: move button. Terraform apply: button moved.',
+      'This is not a bug. This is a feature.',
+      'The button has 99.99% uptime… of running away.',
+      '☕ > ❌  — this is objectively true',
     ];
 
-    // Center the button initially
     function centerBtn() {
       const aw = arena.offsetWidth;
       const ah = arena.offsetHeight;
@@ -273,33 +285,74 @@
       noBtn.style.top = ((ah - bh) / 2) + 'px';
     }
 
-    function getRandomPos() {
+    function flee(mx, my) {
+      const now = Date.now();
+      if (now - lastFlee < COOLDOWN) return;
+      lastFlee = now;
+
       const aw = arena.offsetWidth;
       const ah = arena.offsetHeight;
       const bw = noBtn.offsetWidth;
       const bh = noBtn.offsetHeight;
-      return {
-        x: Math.random() * (aw - bw),
-        y: Math.random() * (ah - bh),
-      };
-    }
+      const maxX = aw - bw;
+      const maxY = ah - bh;
 
-    function runAway() {
-      const pos = getRandomPos();
-      noBtn.style.left = pos.x + 'px';
-      noBtn.style.top = pos.y + 'px';
+      // Pick the corner of the arena farthest from the mouse
+      const corners = [
+        [0, 0],
+        [maxX, 0],
+        [0, maxY],
+        [maxX, maxY],
+      ];
+
+      const [fx, fy] = corners.reduce((best, [cx, cy]) => {
+        const d = Math.hypot(cx + bw / 2 - mx, cy + bh / 2 - my);
+        return d > best[2] ? [cx, cy, d] : best;
+      }, [0, 0, 0]);
+
+      // Add a random spread within the far quadrant so it's less robotic
+      const spread = 0.3;
+      const newX = Math.max(0, Math.min(maxX, fx + (Math.random() - 0.5) * maxX * spread));
+      const newY = Math.max(0, Math.min(maxY, fy + (Math.random() - 0.5) * maxY * spread));
+
+      noBtn.style.left = newX + 'px';
+      noBtn.style.top = newY + 'px';
+
       taunt.textContent = taunts[Math.min(attempts, taunts.length - 1)];
       attempts++;
     }
 
     centerBtn();
 
-    noBtn.addEventListener('mouseover', runAway);
+    // Track mouse across the whole arena — flee before the cursor arrives
+    arena.addEventListener('mousemove', e => {
+      const rect = arena.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
 
-    noBtn.addEventListener('touchstart', e => {
+      const bLeft = parseFloat(noBtn.style.left) || 0;
+      const bTop  = parseFloat(noBtn.style.top)  || 0;
+      const bcx = bLeft + noBtn.offsetWidth  / 2;
+      const bcy = bTop  + noBtn.offsetHeight / 2;
+
+      if (Math.hypot(mx - bcx, my - bcy) < PROXIMITY) {
+        flee(mx, my);
+      }
+    });
+
+    // Mobile: flee on touch anywhere in the arena
+    arena.addEventListener('touchmove', e => {
       e.preventDefault();
-      runAway();
+      const rect = arena.getBoundingClientRect();
+      const t = e.touches[0];
+      flee(t.clientX - rect.left, t.clientY - rect.top);
     }, { passive: false });
+
+    // Fallback: if somehow the mouse lands on the button, always flee
+    noBtn.addEventListener('mouseover', e => {
+      const rect = arena.getBoundingClientRect();
+      flee(e.clientX - rect.left, e.clientY - rect.top);
+    });
 
     yesBtn.addEventListener('click', () => {
       card.classList.add('success');
