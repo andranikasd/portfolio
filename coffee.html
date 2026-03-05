@@ -65,15 +65,13 @@
 
     .card {
       text-align: center;
-      padding: 3rem 2.5rem;
+      padding: 3rem 2.5rem 2.5rem;
       max-width: 480px;
       width: 90%;
       background: rgb(255 255 255 / 4%);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       backdrop-filter: blur(12px);
-      position: relative;
-      z-index: 1;
     }
 
     .card__emoji {
@@ -108,17 +106,16 @@
       font-size: 0.95rem;
       color: var(--text-muted);
       line-height: 1.65;
-      margin-bottom: 2.25rem;
+      margin-bottom: 2rem;
       max-width: 360px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .card__actions {
+    /* YES button row */
+    .card__yes {
       display: flex;
-      gap: 0.875rem;
       justify-content: center;
-      flex-wrap: wrap;
       margin-bottom: 1.25rem;
     }
 
@@ -156,24 +153,30 @@
     }
 
     .btn--no {
+      position: absolute;
       background: rgb(255 255 255 / 5%);
       border-color: var(--border);
       color: var(--text-muted);
       user-select: none;
       -webkit-user-select: none;
+      transition: left 0.12s ease, top 0.12s ease;
     }
 
-    #no-btn.is-fixed {
-      position: fixed;
-      transition: left 0.1s ease, top 0.1s ease;
-      z-index: 999;
+    /* Arena — the NO button is trapped inside here */
+    .arena {
+      position: relative;
+      width: 100%;
+      height: 80px;
+      margin-bottom: 1rem;
+      border: 1px dashed rgb(255 255 255 / 8%);
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     .taunt {
       font-size: 0.82rem;
       color: var(--text-muted);
       min-height: 1.2em;
-      transition: opacity 300ms ease;
       font-style: italic;
     }
 
@@ -213,19 +216,26 @@
     <p class="card__sub" id="sub">
       I&rsquo;m always up for a good chat about infrastructure, cloud, or just life in general.
     </p>
-    <div class="card__actions">
+
+    <div class="card__yes">
       <a href="mailto:theandranikgrigoryan@gmail.com?subject=Let%27s%20grab%20a%20coffee%21&body=Hey%20Andranik%2C%0A%0AI%27d%20love%20to%20grab%20a%20virtual%20coffee%20with%20you!%0A%0A"
          class="btn btn--yes"
          id="yes-btn">
         Yes, let&rsquo;s do it &#9749;
       </a>
+    </div>
+
+    <!-- The NO button is trapped inside this arena -->
+    <div class="arena" id="arena">
       <button class="btn btn--no" id="no-btn" type="button">No, thanks</button>
     </div>
+
     <p class="taunt" id="taunt"></p>
   </div>
 
   <script>
     const noBtn = document.getElementById('no-btn');
+    const arena = document.getElementById('arena');
     const taunt = document.getElementById('taunt');
     const card = document.getElementById('card');
     const title = document.getElementById('title');
@@ -234,7 +244,6 @@
     const yesBtn = document.getElementById('yes-btn');
 
     let attempts = 0;
-    let isFixed = false;
 
     const taunts = [
       'Too slow! 😄',
@@ -254,34 +263,36 @@
       '☕☕☕',
     ];
 
+    // Center the button initially
+    function centerBtn() {
+      const aw = arena.offsetWidth;
+      const ah = arena.offsetHeight;
+      const bw = noBtn.offsetWidth;
+      const bh = noBtn.offsetHeight;
+      noBtn.style.left = ((aw - bw) / 2) + 'px';
+      noBtn.style.top = ((ah - bh) / 2) + 'px';
+    }
+
     function getRandomPos() {
-      const margin = 16;
-      const w = noBtn.offsetWidth || 130;
-      const h = noBtn.offsetHeight || 46;
-      const maxX = window.innerWidth - w - margin;
-      const maxY = window.innerHeight - h - margin;
+      const aw = arena.offsetWidth;
+      const ah = arena.offsetHeight;
+      const bw = noBtn.offsetWidth;
+      const bh = noBtn.offsetHeight;
       return {
-        x: Math.min(Math.max(margin, Math.random() * maxX), maxX),
-        y: Math.min(Math.max(margin, Math.random() * maxY), maxY),
+        x: Math.random() * (aw - bw),
+        y: Math.random() * (ah - bh),
       };
     }
 
     function runAway() {
-      if (!isFixed) {
-        const rect = noBtn.getBoundingClientRect();
-        noBtn.style.left = rect.left + 'px';
-        noBtn.style.top = rect.top + 'px';
-        noBtn.classList.add('is-fixed');
-        isFixed = true;
-      }
-
       const pos = getRandomPos();
       noBtn.style.left = pos.x + 'px';
       noBtn.style.top = pos.y + 'px';
-
       taunt.textContent = taunts[Math.min(attempts, taunts.length - 1)];
       attempts++;
     }
+
+    centerBtn();
 
     noBtn.addEventListener('mouseover', runAway);
 
@@ -295,9 +306,7 @@
       emoji.textContent = '🎉';
       title.textContent = 'Amazing! See you soon ☕';
       sub.textContent = 'Opening your email… Can\'t wait to chat!';
-      if (isFixed) {
-        noBtn.style.display = 'none';
-      }
+      arena.style.display = 'none';
       taunt.textContent = '';
     });
   </script>
