@@ -255,12 +255,14 @@
     ];
 
     function getRandomPos() {
-      const margin = 24;
-      const w = noBtn.offsetWidth;
-      const h = noBtn.offsetHeight;
+      const margin = 16;
+      const w = noBtn.offsetWidth || 130;
+      const h = noBtn.offsetHeight || 46;
+      const maxX = window.innerWidth - w - margin;
+      const maxY = window.innerHeight - h - margin;
       return {
-        x: margin + Math.random() * (window.innerWidth - w - margin * 2),
-        y: margin + Math.random() * (window.innerHeight - h - margin * 2),
+        x: Math.min(Math.max(margin, Math.random() * maxX), maxX),
+        y: Math.min(Math.max(margin, Math.random() * maxY), maxY),
       };
     }
 
