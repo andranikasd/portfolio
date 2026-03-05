@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coffee? ☕ — Andranik Grigoryan</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%231d4ed8'/%3E%3Ctext x='50' y='54' font-size='46' font-family='system-ui,sans-serif' font-weight='700' fill='white' text-anchor='middle' dominant-baseline='central'%3EAG%3C/text%3E%3C/svg%3E" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #070d1a;
+      --border: rgb(255 255 255 / 9%);
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-2: #6366f1;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --radius: 14px;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      background-image:
+        radial-gradient(ellipse 80% 55% at 50% 40%, rgb(59 130 246 / 14%) 0%, transparent 65%),
+        linear-gradient(rgb(255 255 255 / 4%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(255 255 255 / 4%) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    .back {
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 150ms ease;
+      z-index: 10;
+    }
+
+    .back:hover {
+      color: var(--accent);
+    }
+
+    .card {
+      text-align: center;
+      padding: 3rem 2.5rem;
+      max-width: 480px;
+      width: 90%;
+      background: rgb(255 255 255 / 4%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .card__emoji {
+      font-size: 3.5rem;
+      margin-bottom: 1.25rem;
+      display: block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .card__title {
+      font-size: clamp(1.6rem, 4vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.85rem;
+      background: linear-gradient(135deg, #fff 0%, #93c5fd 55%, #a5b4fc 100%);
+      background-clip: text;
+      color: transparent;
+    }
+
+    .card__sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 2.25rem;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .card__actions {
+      display: flex;
+      gap: 0.875rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.925rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 200ms ease;
+      text-decoration: none;
+      white-space: nowrap;
+      min-height: 46px;
+      letter-spacing: 0.01em;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn--yes {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: #fff;
+      box-shadow: 0 2px 20px rgb(59 130 246 / 30%);
+    }
+
+    .btn--yes:hover {
+      box-shadow: 0 4px 32px rgb(59 130 246 / 50%);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .btn--no {
+      background: rgb(255 255 255 / 5%);
+      border-color: var(--border);
+      color: var(--text-muted);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #no-btn.is-fixed {
+      position: fixed;
+      transition: left 0.1s ease, top 0.1s ease;
+      z-index: 999;
+    }
+
+    .taunt {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      min-height: 1.2em;
+      transition: opacity 300ms ease;
+      font-style: italic;
+    }
+
+    /* ── Success state ─────────────────────────────────────── */
+    .card.success .card__emoji {
+      animation: spin-bounce 0.5s ease forwards;
+    }
+
+    @keyframes spin-bounce {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.4) rotate(20deg);
+      }
+
+      100% {
+        transform: scale(1.15) rotate(0deg);
+      }
+    }
+
+    .card.success .card__title {
+      background: linear-gradient(135deg, #fff 0%, #6ee7b7 60%, #34d399 100%);
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back">&#8592; Back to portfolio</a>
+
+  <div class="card" id="card">
+    <span class="card__emoji" id="emoji">&#9749;</span>
+    <h1 class="card__title" id="title">Let&rsquo;s drink a coffee?</h1>
+    <p class="card__sub" id="sub">
+      I&rsquo;m always up for a good chat about infrastructure, cloud, or just life in general.
+    </p>
+    <div class="card__actions">
+      <a href="mailto:theandranikgrigoryan@gmail.com?subject=Let%27s%20grab%20a%20coffee%21&body=Hey%20Andranik%2C%0A%0AI%27d%20love%20to%20grab%20a%20virtual%20coffee%20with%20you!%0A%0A"
+         class="btn btn--yes"
+         id="yes-btn">
+        Yes, let&rsquo;s do it &#9749;
+      </a>
+      <button class="btn btn--no" id="no-btn" type="button">No, thanks</button>
+    </div>
+    <p class="taunt" id="taunt"></p>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('no-btn');
+    const taunt = document.getElementById('taunt');
+    const card = document.getElementById('card');
+    const title = document.getElementById('title');
+    const sub = document.getElementById('sub');
+    const emoji = document.getElementById('emoji');
+    const yesBtn = document.getElementById('yes-btn');
+
+    let attempts = 0;
+    let isFixed = false;
+
+    const taunts = [
+      'Too slow! 😄',
+      'Nice try.',
+      'Come on, it\'ll be fun!',
+      'I saw that 👀',
+      'Coffee is always a good idea.',
+      'Your cursor isn\'t fast enough 😏',
+      'The button has opinions.',
+      'Maybe try clicking faster?',
+      'It\'s just a coffee…',
+      'The button is scared of you.',
+      'Have you considered: yes?',
+      'The no button has left the chat.',
+      'Skill issue.',
+      'Still no? Impressive dedication.',
+      '☕☕☕',
+    ];
+
+    function getRandomPos() {
+      const margin = 24;
+      const w = noBtn.offsetWidth;
+      const h = noBtn.offsetHeight;
+      return {
+        x: margin + Math.random() * (window.innerWidth - w - margin * 2),
+        y: margin + Math.random() * (window.innerHeight - h - margin * 2),
+      };
+    }
+
+    function runAway() {
+      if (!isFixed) {
+        const rect = noBtn.getBoundingClientRect();
+        noBtn.style.left = rect.left + 'px';
+        noBtn.style.top = rect.top + 'px';
+        noBtn.classList.add('is-fixed');
+        isFixed = true;
+      }
+
+      const pos = getRandomPos();
+      noBtn.style.left = pos.x + 'px';
+      noBtn.style.top = pos.y + 'px';
+
+      taunt.textContent = taunts[Math.min(attempts, taunts.length - 1)];
+      attempts++;
+    }
+
+    noBtn.addEventListener('mouseover', runAway);
+
+    noBtn.addEventListener('touchstart', e => {
+      e.preventDefault();
+      runAway();
+    }, { passive: false });
+
+    yesBtn.addEventListener('click', () => {
+      card.classList.add('success');
+      emoji.textContent = '🎉';
+      title.textContent = 'Amazing! See you soon ☕';
+      sub.textContent = 'Opening your email… Can\'t wait to chat!';
+      if (isFixed) {
+        noBtn.style.display = 'none';
+      }
+      taunt.textContent = '';
+    });
+  </script>
+
+</body>
+</html>
