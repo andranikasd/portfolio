@@ -1,0 +1,62 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+# Allow one concurrent deployment; a newer push supersedes an in-flight one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Every JS module parses
+        run: |
+          set -e
+          find assets/js -name '*.js' -print0 | xargs -0 -n1 node --check
+
+      - name: portfolio.json is valid and self-consistent
+        run: node .github/scripts/check-config.mjs
+
+      - name: No absolute asset paths (the site may live under a sub-path)
+        run: |
+          if grep -rnE '(src|href)="/[^/]' index.html assets/ 2>/dev/null; then
+            echo "Absolute paths break project pages served from /<repo>/" >&2
+            exit 1
+          fi
+
+      - name: Every referenced local file exists
+        run: |
+          set -e
+          for f in $(grep -ohE '(src|href)="[^"#:]+"' index.html | sed -E 's/.*"(.*)"/\1/'); do
+            [ -e "$f" ] || { echo "missing: $f" >&2; exit 1; }
+          done
+
+  deploy:
+    needs: validate
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4

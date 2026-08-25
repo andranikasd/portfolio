@@ -1,0 +1,538 @@
+{
+  "meta": {
+    "name": "Andranik Grigoryan",
+    "initials": "AG",
+    "title": "DevOps Engineer",
+    "tagline": "Building reliable infrastructure, streamlined CI/CD, and scalable cloud platforms.",
+    "description": "Andranik Grigoryan — DevOps Engineer. Infrastructure, CI/CD, cloud, and automation.",
+    "email": "theandranikgrigoryan@gmail.com",
+    "location": "Yerevan, Armenia",
+    "cv": "cv.pdf",
+    "copyright": "© 2026 Andranik Grigoryan"
+  },
+  "links": [
+    {
+      "label": "GitHub",
+      "short": "github.com/andranikasd",
+      "url": "https://github.com/andranikasd",
+      "icon": "github"
+    },
+    {
+      "label": "LinkedIn",
+      "short": "linkedin.com/in/andranik-grigoryan",
+      "url": "https://www.linkedin.com/in/andranik-grigoryan/",
+      "icon": "linkedin"
+    },
+    {
+      "label": "Email",
+      "short": "theandranikgrigoryan@gmail.com",
+      "url": "mailto:theandranikgrigoryan@gmail.com",
+      "icon": "mail"
+    },
+    {
+      "label": "Download CV (PDF)",
+      "short": "cv.pdf",
+      "url": "cv.pdf",
+      "icon": "download",
+      "download": true
+    }
+  ],
+  "map": {
+    "seed": 20260825,
+    "title": "The Campaign of Andranik Grigoryan",
+    "subtitle": "Six years of infrastructure, charted",
+    "world": {
+      "width": 4600,
+      "height": 3100
+    },
+    "hint": "WASD to march · click to travel · Space to strike · 1–3 to swap tools · ride to a keep and accept its mission",
+    "legend": "Ride to a keep to read its chronicle. Your lantern travels with you — the land closes up behind it."
+  },
+  "metrics": [
+    {
+      "value": "1 TB/day",
+      "label": "Telemetry handled"
+    },
+    {
+      "value": "200M+",
+      "label": "DNS requests served daily"
+    },
+    {
+      "value": "30%",
+      "label": "Infrastructure cost reduction"
+    },
+    {
+      "value": "30→12 min",
+      "label": "Deployment time cut"
+    }
+  ],
+  "experience": [
+    {
+      "id": "codedcloud",
+      "company": "Codedcloud",
+      "role": "DevOps Engineer",
+      "badge": "Contract",
+      "period": "2025 – Present",
+      "duration": "10 mos",
+      "location": "Remote",
+      "castle": {
+        "name": "Codedcloud Spire",
+        "motto": "A thousand gigabytes a day, and none of them lost",
+        "size": "large",
+        "banner": "#3b82f6",
+        "terrain": "coast"
+      },
+      "bullets": [
+        "Configured observability stack handling **1 TB/day** of telemetry (logs, traces, metrics), achieving 90% service monitoring coverage and improving incident response management",
+        "Implemented infrastructure-as-code for CDN configuration, establishing a controlled change process that significantly reduced manual errors and optimised deployment workflows",
+        "Optimised CI/CD pipelines, cutting total deployment time from **30 to 12 minutes**",
+        "Automated manual operational tasks, reducing incidents and improving business processes"
+      ],
+      "stack": [
+        "OpenTelemetry",
+        "Grafana",
+        "Loki",
+        "Terraform",
+        "CDN",
+        "GitHub Actions"
+      ],
+      "mission": {
+        "name": "Hold the Telemetry Watch",
+        "brief": "A terabyte a day is pouring into the Spire, and something in it is hostile. Keep the walls standing.",
+        "waves": 5,
+        "keepHp": 38,
+        "incidents": [
+          "ddos",
+          "drift",
+          "blind"
+        ],
+        "tools": [
+          {
+            "name": "CDN Shield",
+            "kind": "bolt",
+            "domain": "traffic",
+            "note": "Rapid, cheap, turns floods aside"
+          },
+          {
+            "name": "Terraform",
+            "kind": "wrench",
+            "domain": "config",
+            "note": "Heavy swing, straightens what drifted"
+          },
+          {
+            "name": "OpenTelemetry",
+            "kind": "ping",
+            "domain": "signal",
+            "note": "Pings through a line of foes; shows what hides"
+          }
+        ]
+      }
+    },
+    {
+      "id": "codeex",
+      "company": "Codeex",
+      "role": "DevOps Engineer",
+      "badge": "Full-time · On-site",
+      "period": "2024 – 2025",
+      "duration": "1 yr 6 mos",
+      "location": "Yerevan, Armenia",
+      "castle": {
+        "name": "Codeex Citadel",
+        "motto": "Every stone accounted for in code",
+        "size": "large",
+        "banner": "#f59e0b",
+        "terrain": "mountain"
+      },
+      "bullets": [
+        "Migrated a manually configured AWS environment to **100% IaC coverage**, improving security, auditability, and operational consistency",
+        "Designed and deployed a business-critical custom DNS service handling **200M+ requests/day** across 6 regions",
+        "Drove infrastructure cost reduction of **30%** through targeted optimisation initiatives",
+        "Built observability and incident response management systems, improving service availability and SLA compliance",
+        "Achieved SOC 2 compliance and fulfilled AWS Partner Program infrastructure requirements, strengthening security posture and business credibility"
+      ],
+      "stack": [
+        "AWS",
+        "Terraform",
+        "DNS",
+        "BGP",
+        "Prometheus",
+        "SOC 2"
+      ],
+      "mission": {
+        "name": "Break the Siege of the Citadel",
+        "brief": "Six regions, two hundred million queries a day, and an audit at the gate. The Citadel must not fall.",
+        "waves": 6,
+        "keepHp": 44,
+        "incidents": [
+          "dnsflood",
+          "ddos",
+          "drift",
+          "blind"
+        ],
+        "tools": [
+          {
+            "name": "AWS WAF",
+            "kind": "bolt",
+            "domain": "traffic",
+            "note": "Rapid, cheap, turns floods aside"
+          },
+          {
+            "name": "Terraform",
+            "kind": "wrench",
+            "domain": "config",
+            "note": "Heavy swing, straightens what drifted"
+          },
+          {
+            "name": "Prometheus",
+            "kind": "ping",
+            "domain": "signal",
+            "note": "Pings through a line of foes; shows what hides"
+          }
+        ]
+      }
+    },
+    {
+      "id": "goya",
+      "company": "Goya CJSC",
+      "role": "DevOps Engineer",
+      "badge": "Full-time · On-site",
+      "period": "2022 – 2024",
+      "duration": "2 yrs 9 mos",
+      "location": "Yerevan, Armenia",
+      "castle": {
+        "name": "Goya Hold",
+        "motto": "A platform raised from bare metal",
+        "size": "medium",
+        "banner": "#10b981",
+        "terrain": "forest"
+      },
+      "bullets": [
+        "Designed and implemented on-premise Kubernetes infrastructure serving as an Internal Developer Platform (IDP)",
+        "Led the project from scope definition through final delivery",
+        "Collaborated with management and supply teams to ensure smooth project delivery operations"
+      ],
+      "stack": [
+        "Kubernetes",
+        "Proxmox",
+        "Helm",
+        "ArgoCD",
+        "Ansible"
+      ],
+      "mission": {
+        "name": "Raise the Platform",
+        "brief": "Bare metal below, developers above. Hold the Hold while the cluster comes up.",
+        "waves": 5,
+        "keepHp": 40,
+        "incidents": [
+          "pressure",
+          "rollout",
+          "drift",
+          "loop"
+        ],
+        "tools": [
+          {
+            "name": "Kubernetes",
+            "kind": "wheel",
+            "domain": "platform",
+            "note": "Fast wheel, cuts through two at a time"
+          },
+          {
+            "name": "Helm",
+            "kind": "crate",
+            "domain": "delivery",
+            "note": "One chart, a whole release radius"
+          },
+          {
+            "name": "Ansible",
+            "kind": "wrench",
+            "domain": "config",
+            "note": "Heavy swing, straightens what drifted"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stone-valley",
+      "company": "Stone Valley LLC",
+      "role": "DevOps Engineer",
+      "badge": "Full-time · Remote",
+      "period": "2020 – 2022",
+      "duration": "2 yrs 2 mos",
+      "location": "Yerevan, Armenia",
+      "castle": {
+        "name": "Stone Valley Watch",
+        "motto": "Where the road began",
+        "size": "medium",
+        "banner": "#a78bfa",
+        "terrain": "valley"
+      },
+      "bullets": [
+        "Deployed and maintained ELK stack (Elasticsearch, Logstash, Kibana) for centralised log aggregation and real-time monitoring across production services",
+        "Built and managed Azure cloud infrastructure, supporting application workloads and ensuring high availability",
+        "Designed and implemented CI/CD pipelines, improving release automation and reducing deployment friction",
+        "Administered Linux-based server environments and automated routine operational tasks using Bash and Python"
+      ],
+      "stack": [
+        "Azure",
+        "ELK",
+        "Jenkins",
+        "Bash",
+        "Python",
+        "Linux"
+      ],
+      "mission": {
+        "name": "Light the First Beacon",
+        "brief": "The Watch has no eyes yet. Hold the gate while the logs start flowing.",
+        "waves": 4,
+        "keepHp": 34,
+        "incidents": [
+          "blind",
+          "rollout",
+          "pressure",
+          "loop"
+        ],
+        "tools": [
+          {
+            "name": "ELK",
+            "kind": "ping",
+            "domain": "signal",
+            "note": "Pings through a line of foes; shows what hides"
+          },
+          {
+            "name": "Jenkins",
+            "kind": "crate",
+            "domain": "delivery",
+            "note": "Unglamorous, and it splashes"
+          },
+          {
+            "name": "Bash",
+            "kind": "wheel",
+            "domain": "platform",
+            "note": "Quick one-liners, two foes per throw"
+          }
+        ]
+      }
+    }
+  ],
+  "skills": [
+    {
+      "group": "Cloud & Infrastructure",
+      "tags": [
+        "AWS",
+        "GCP",
+        "Terraform",
+        "Ansible"
+      ]
+    },
+    {
+      "group": "Containers & Orchestration",
+      "tags": [
+        "Kubernetes",
+        "Docker",
+        "Helm",
+        "ArgoCD"
+      ]
+    },
+    {
+      "group": "CI/CD & GitOps",
+      "tags": [
+        "GitHub Actions",
+        "GitLab CI",
+        "Jenkins",
+        "FluxCD"
+      ]
+    },
+    {
+      "group": "Observability",
+      "tags": [
+        "Prometheus",
+        "Grafana",
+        "Loki",
+        "OpenTelemetry"
+      ]
+    },
+    {
+      "group": "Networking & DNS",
+      "tags": [
+        "MikroTik",
+        "BGP",
+        "DNS",
+        "CDN"
+      ]
+    },
+    {
+      "group": "Languages & Scripting",
+      "tags": [
+        "Bash",
+        "Python",
+        "Go",
+        "HCL"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "issuer": "Linux Foundation",
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "short": "CKA Chapter House"
+    },
+    {
+      "issuer": "Amazon Web Services",
+      "name": "AWS Certified Solutions Architect",
+      "short": "AWS Architect Priory"
+    }
+  ],
+  "projects": [
+    {
+      "tag": "Kubernetes · Helm",
+      "title": "Keycloak Helm Chart",
+      "desc": "Production-ready Helm chart for deploying Keycloak on Kubernetes with configurable realms, clients, and identity provider integrations out of the box.",
+      "short": "Keycloak Tower"
+    },
+    {
+      "tag": "Automation · Monitoring",
+      "title": "Discord Alert Management Bot",
+      "desc": "Bot that routes, deduplicates, and acknowledges Alertmanager notifications in Discord — bringing on-call workflows into the team's primary communication channel.",
+      "short": "Alertwatch Beacon"
+    },
+    {
+      "tag": "Infrastructure · Networking",
+      "title": "On-Premise Datacenter Topology",
+      "desc": "Proxmox high-availability cluster running a Kubernetes Internal Developer Platform, BGP-routed network with MikroTik, and a custom DNS service handling 200M+ requests/day across 6 regions.",
+      "short": "Bare-Metal Ruins"
+    }
+  ],
+  "contact": {
+    "lead": "Available for new opportunities, collaborations, or a conversation about infrastructure."
+  },
+  "tools": {
+    "bolt": {
+      "damage": 2,
+      "cooldown": 0.22,
+      "speed": 980,
+      "pierce": 1,
+      "splash": 0
+    },
+    "wrench": {
+      "damage": 4,
+      "cooldown": 0.55,
+      "speed": 620,
+      "pierce": 1,
+      "splash": 0
+    },
+    "ping": {
+      "damage": 2,
+      "cooldown": 0.34,
+      "speed": 1040,
+      "pierce": 3,
+      "splash": 0
+    },
+    "crate": {
+      "damage": 3,
+      "cooldown": 0.5,
+      "speed": 560,
+      "pierce": 1,
+      "splash": 95
+    },
+    "wheel": {
+      "damage": 3,
+      "cooldown": 0.3,
+      "speed": 720,
+      "pierce": 2,
+      "splash": 0
+    }
+  },
+  "domains": {
+    "traffic": "Traffic",
+    "config": "Configuration",
+    "signal": "Observability",
+    "delivery": "Delivery",
+    "platform": "Platform"
+  },
+  "incidents": {
+    "ddos": {
+      "name": "DDoS Surge",
+      "weakTo": "traffic",
+      "art": "surge",
+      "skill": "swarm",
+      "hp": 2,
+      "speed": 158,
+      "radius": 15,
+      "colour": "#b45309",
+      "reward": 1,
+      "tell": "Arrives in packs and weaves as it runs."
+    },
+    "dnsflood": {
+      "name": "DNS Flood",
+      "weakTo": "traffic",
+      "art": "surge",
+      "skill": "swarm",
+      "hp": 3,
+      "speed": 172,
+      "radius": 16,
+      "colour": "#c2410c",
+      "reward": 2,
+      "tell": "Faster, and it keeps coming."
+    },
+    "drift": {
+      "name": "Config Drift",
+      "weakTo": "config",
+      "art": "shard",
+      "skill": "blink",
+      "hp": 3,
+      "speed": 104,
+      "radius": 17,
+      "colour": "#7c3aed",
+      "reward": 2,
+      "tell": "Slips sideways without warning."
+    },
+    "blind": {
+      "name": "Blind Spot",
+      "weakTo": "signal",
+      "art": "wraith",
+      "skill": "cloak",
+      "hp": 3,
+      "speed": 126,
+      "radius": 16,
+      "colour": "#475569",
+      "reward": 2,
+      "tell": "Unseen until it is close, or until it is hit."
+    },
+    "rollout": {
+      "name": "Failed Rollout",
+      "weakTo": "delivery",
+      "art": "crate",
+      "skill": "armour",
+      "hp": 5,
+      "speed": 94,
+      "radius": 20,
+      "colour": "#9b2c1f",
+      "reward": 3,
+      "tell": "Crated and braced. Shrugs off part of every blow."
+    },
+    "pressure": {
+      "name": "Node Pressure",
+      "weakTo": "platform",
+      "art": "boulder",
+      "skill": "siege",
+      "hp": 6,
+      "speed": 76,
+      "radius": 25,
+      "colour": "#5b1717",
+      "reward": 4,
+      "tell": "Slow, heavy, and twice as hard on the walls."
+    },
+    "loop": {
+      "name": "CrashLoopBackOff",
+      "weakTo": "platform",
+      "art": "ouro",
+      "skill": "revive",
+      "hp": 3,
+      "speed": 134,
+      "radius": 17,
+      "colour": "#0f766e",
+      "reward": 3,
+      "tell": "Gets back up once. Put it down twice."
+    }
+  }
+}

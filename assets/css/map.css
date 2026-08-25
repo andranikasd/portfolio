@@ -1,0 +1,945 @@
+/* ── CAMPAIGN MAP VIEW ───────────────────────────────────── */
+
+:root {
+  --map-paper: 244 235 213;
+  --map-ink: #40311d;
+  --map-ink-soft: rgb(64 49 29 / 62%);
+  --map-line: rgb(64 49 29 / 30%);
+  --map-serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --map-shadow: 0 18px 48px rgb(20 12 4 / 45%);
+}
+
+/* The document view's highlighted `strong` would bleed into map panels. */
+.map-hud strong,
+.map-status strong,
+.weapon-picker strong {
+  color: inherit;
+  box-shadow: none;
+}
+
+.map-view {
+  position: fixed;
+  inset: 0;
+  background: #17110a;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.map-view__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+/* ── Shared parchment panel ──────────────────────────────── */
+.map-hud,
+.map-hint,
+.castle-card,
+.view-switch {
+  background: rgb(var(--map-paper) / 95%);
+  border: 1px solid var(--map-line);
+  border-radius: 10px;
+  box-shadow: var(--map-shadow), inset 0 0 0 1px rgb(255 255 255 / 45%);
+  color: var(--map-ink);
+  backdrop-filter: blur(3px);
+}
+
+/* ── View switch (floats over both views) ────────────────── */
+.view-switch {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 300;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  font-family: var(--map-serif);
+}
+
+.view-switch__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  border: none;
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+  opacity: 0.62;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 180ms ease, opacity 180ms ease;
+}
+
+.view-switch__btn:hover {
+  opacity: 1;
+}
+
+.view-switch__btn[aria-pressed='true'] {
+  opacity: 1;
+  background: rgb(64 49 29 / 14%);
+}
+
+/* ── HUD: title cartouche + keep roster ──────────────────────
+   Both panels share one left-hand rail so they can never overlap. */
+.map-rail {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: min(300px, calc(100vw - 2rem));
+  pointer-events: none;
+}
+
+.map-rail > * {
+  pointer-events: auto;
+}
+
+.map-hud {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem 1.1rem 0.7rem;
+  font-family: var(--map-serif);
+}
+
+.map-hud__title h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+}
+
+.map-hud__title p {
+  margin-top: 0.2rem;
+  font-size: 0.76rem;
+  font-style: italic;
+  color: var(--map-ink-soft);
+}
+
+.map-hud__log {
+  margin-top: 0.85rem;
+  border-top: 1px solid var(--map-line);
+  padding-top: 0.4rem;
+  list-style: none;
+}
+
+.map-hud__log button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.42rem 0.35rem;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+
+.map-hud__log button:hover {
+  background: rgb(64 49 29 / 8%);
+}
+
+.map-hud__log li.is-active button {
+  background: rgb(64 49 29 / 12%);
+  box-shadow: inset 2px 0 0 var(--map-ink);
+}
+
+.map-hud__dot {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid rgb(64 49 29 / 55%);
+  opacity: 0.45;
+  transition: opacity 160ms ease;
+}
+
+.map-hud__log li.is-visited .map-hud__dot {
+  opacity: 1;
+}
+
+.map-hud__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.map-hud__text strong {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.map-hud__text em {
+  font-size: 0.7rem;
+  font-style: normal;
+  color: var(--map-ink-soft);
+}
+
+/* ── Hint + compass ──────────────────────────────────────── */
+.map-hint {
+  position: absolute;
+  bottom: 1.15rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  margin: 0;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-family: var(--map-serif);
+  font-size: 0.78rem;
+  font-style: italic;
+  white-space: nowrap;
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.map-hint.is-gone {
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  pointer-events: none;
+}
+
+.map-compass {
+  position: absolute;
+  right: 1.6rem;
+  bottom: 1.4rem;
+  z-index: 15;
+  color: rgb(64 49 29 / 55%);
+  pointer-events: none;
+}
+
+/* ── Castle card ─────────────────────────────────────────── */
+.castle-card {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  z-index: 30;
+  width: min(410px, calc(100vw - 2.5rem));
+  max-height: min(78vh, 720px);
+  padding: 1.4rem 1.5rem 1.1rem;
+  overflow-y: auto;
+  font-family: var(--map-serif);
+  transform: translate(24px, -50%);
+  opacity: 0;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.castle-card.is-open {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.castle-card__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.7rem;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--map-ink-soft);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.castle-card__close:hover {
+  background: rgb(64 49 29 / 10%);
+  color: var(--map-ink);
+}
+
+.castle-card__head {
+  border-bottom: 1px solid var(--map-line);
+  padding-bottom: 0.85rem;
+}
+
+.castle-card__keep {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--banner, var(--map-ink));
+  filter: saturate(0.7) brightness(0.72);
+}
+
+.castle-card__head h2 {
+  margin-top: 0.3rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.castle-card__org {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--map-ink-soft);
+}
+
+.castle-card__meta {
+  margin-top: 0.5rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  color: var(--map-ink-soft);
+}
+
+.castle-card__motto {
+  margin-top: 0.6rem;
+  padding-left: 0.7rem;
+  border-left: 2px solid var(--map-line);
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--map-ink-soft);
+}
+
+.castle-card__bullets {
+  margin: 0.95rem 0 0;
+  padding-left: 1.1rem;
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.castle-card__bullets li {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgb(64 49 29 / 88%);
+}
+
+.castle-card__bullets strong {
+  font-weight: 700;
+  color: var(--map-ink);
+  box-shadow: inset 0 -0.45em rgb(202 138 4 / 22%);
+}
+
+.castle-card__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  list-style: none;
+}
+
+.castle-card__stack li {
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--map-line);
+  border-radius: 4px;
+  background: rgb(64 49 29 / 5%);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.castle-card__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--map-line);
+}
+
+.castle-card__step {
+  padding: 0.35rem 0.6rem;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: var(--map-ink-soft);
+  font-family: var(--map-serif);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.castle-card__step:hover {
+  background: rgb(64 49 29 / 9%);
+  color: var(--map-ink);
+}
+
+/* ── Touch joystick ──────────────────────────────────────── */
+.map-stick {
+  position: fixed;
+  z-index: 25;
+  width: 88px;
+  height: 88px;
+  margin: -44px 0 0 -44px;
+  border-radius: 50%;
+  border: 1px solid rgb(244 235 213 / 45%);
+  background: rgb(244 235 213 / 12%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.map-stick.is-live {
+  opacity: 1;
+}
+
+.map-stick span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  background: rgb(244 235 213 / 78%);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .castle-card {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-height: 62vh;
+    border-radius: 14px 14px 0 0;
+    transform: translateY(100%);
+  }
+
+  .castle-card.is-open {
+    transform: translateY(0);
+  }
+
+  .map-hud {
+    width: calc(100vw - 2rem);
+    padding-bottom: 0.4rem;
+  }
+
+  .map-hud__log {
+    display: flex;
+    gap: 0.3rem;
+    overflow-x: auto;
+    border-top: 1px solid var(--map-line);
+  }
+
+  .map-hud__log li {
+    flex: none;
+  }
+
+  .map-compass,
+  .map-hint {
+    display: none;
+  }
+
+  .view-switch {
+    top: auto;
+    bottom: 1rem;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .castle-card,
+  .map-hint {
+    transition: none;
+  }
+}
+
+/* ── Combat HUD ──────────────────────────────────────────────
+   Sits at the foot of the rail, so the right-hand side stays free for the
+   keep card. */
+.map-status {
+  margin-top: auto;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 10px;
+  background: rgb(var(--map-paper) / 92%);
+  border: 1px solid var(--map-line);
+  box-shadow: var(--map-shadow), inset 0 0 0 1px rgb(255 255 255 / 45%);
+  color: var(--map-ink);
+  font-family: var(--map-serif);
+}
+
+.map-status__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+}
+
+.map-status__label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--map-ink-soft);
+}
+
+.map-status__score {
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.map-hp {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.map-hp span {
+  width: 11px;
+  height: 11px;
+  border: 1px solid rgb(64 49 29 / 55%);
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: transparent;
+  transition: background 160ms ease;
+}
+
+.map-hp span.is-full {
+  background: #9b2c1f;
+}
+
+.map-hp.is-low span.is-full {
+  animation: hp-pulse 900ms ease-in-out infinite;
+}
+
+@keyframes hp-pulse {
+  50% { opacity: 0.35; }
+}
+
+.map-banner {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  z-index: 22;
+  margin: 0;
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  background: rgb(43 29 16 / 82%);
+  color: #f3e9d0;
+  font-family: var(--map-serif);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 6px);
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.map-banner.is-on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Touch-only fire control; pointer devices use Space or a click. */
+.map-fire {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 24;
+  display: none;
+  width: 66px;
+  height: 66px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--map-line);
+  background: rgb(var(--map-paper) / 92%);
+  color: #7f1d1d;
+  box-shadow: var(--map-shadow);
+  cursor: pointer;
+}
+
+.map-fire:active {
+  transform: scale(0.94);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .map-fire {
+    display: flex;
+  }
+}
+
+@media (max-width: 900px) {
+  .map-rail {
+    bottom: 5.2rem;
+  }
+
+  .map-status {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+  }
+
+  .tool-rack {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .tool-rack em {
+    display: none;
+  }
+
+  .map-status__row {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .map-banner {
+    top: 38%;
+    font-size: 0.8rem;
+    white-space: normal;
+    max-width: min(320px, 80vw);
+    text-align: center;
+  }
+}
+
+/* ── Keep integrity ──────────────────────────────────────── */
+.map-status__keep {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.map-status__keep[hidden] {
+  display: none;
+}
+
+.keep-bar {
+  height: 7px;
+  border: 1px solid var(--map-line);
+  border-radius: 2px;
+  background: rgb(64 49 29 / 10%);
+  overflow: hidden;
+}
+
+.keep-bar span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: #3f6212;
+  transition: width 220ms ease, background 220ms ease;
+}
+
+.keep-bar span.is-critical {
+  background: #9b2c1f;
+  animation: keep-pulse 800ms ease-in-out infinite;
+}
+
+@keyframes keep-pulse {
+  50% { opacity: 0.45; }
+}
+
+/* ── Tool rack ───────────────────────────────────────────── */
+.tool-rack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--map-line);
+  list-style: none;
+}
+
+.tool-rack[hidden] {
+  display: none;
+}
+
+.tool-rack button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.tool-rack button:hover {
+  opacity: 0.9;
+  background: rgb(64 49 29 / 7%);
+}
+
+.tool-rack button.is-active {
+  opacity: 1;
+  border-color: var(--map-line);
+  background: rgb(64 49 29 / 12%);
+}
+
+.tool-rack__glyph {
+  flex: none;
+  width: 26px;
+  height: 26px;
+}
+
+.tool-rack span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.tool-rack strong {
+  font-family: var(--map-serif);
+  font-size: 0.82rem;
+  color: var(--map-ink);
+  box-shadow: none;
+}
+
+.tool-rack em {
+  font-size: 0.66rem;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--map-ink-soft);
+}
+
+.tool-rack kbd {
+  flex: none;
+  padding: 0 0.32rem;
+  border: 1px solid var(--map-line);
+  border-radius: 3px;
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  color: var(--map-ink-soft);
+}
+
+/* ── Threat briefing ─────────────────────────────────────── */
+.castle-card__mission-sub {
+  margin-top: 0.7rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--map-ink-soft);
+}
+
+.threat-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  list-style: none;
+}
+
+.threat-table li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.15rem 0.6rem;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--map-line);
+  border-radius: 6px;
+  background: rgb(255 255 255 / 40%);
+}
+
+.threat-table strong {
+  font-family: var(--map-serif);
+  font-size: 0.86rem;
+  box-shadow: none;
+}
+
+.threat-table__tool {
+  justify-self: end;
+  align-self: center;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid rgb(63 98 18 / 45%);
+  border-radius: 3px;
+  background: rgb(63 98 18 / 12%);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #3f6212;
+  white-space: nowrap;
+}
+
+.threat-table em {
+  grid-column: 1 / -1;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--map-ink-soft);
+}
+
+/* ── Missions ────────────────────────────────────────────── */
+.map-status__mission {
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--map-line);
+  font-size: 0.78rem;
+  color: var(--map-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.castle-card__mission {
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--map-line);
+}
+
+.castle-card__mission:empty {
+  display: none;
+}
+
+.castle-card__mission-name {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7f1d1d;
+}
+
+.castle-card__mission-brief {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--map-ink-soft);
+}
+
+.castle-card__mission-done {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #3f6212;
+}
+
+.castle-card__accept {
+  margin-top: 0.8rem;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #5b1717;
+  border-radius: 6px;
+  background: #7f1d1d;
+  color: #f7e8cc;
+  font-family: var(--map-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 2px 0 #5b1717;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.castle-card__accept:hover {
+  background: #90211f;
+  transform: translateY(-1px);
+}
+
+.weapon-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+  list-style: none;
+}
+
+.weapon-picker button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--map-line);
+  border-radius: 6px;
+  background: rgb(255 255 255 / 45%);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.weapon-picker button:hover {
+  border-color: #7f1d1d;
+  background: rgb(255 255 255 / 75%);
+  transform: translateX(2px);
+}
+
+.weapon-picker strong {
+  font-family: var(--map-serif);
+  font-size: 0.92rem;
+  color: var(--map-ink);
+}
+
+.weapon-picker em {
+  font-size: 0.76rem;
+  font-style: italic;
+  color: var(--map-ink-soft);
+}
+
+/* A keep whose mission has been held. */
+.map-hud__log li.is-held .map-hud__text strong::after {
+  content: ' ✦';
+  color: #3f6212;
+}
+
+.map-hud__note {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--map-line);
+  font-size: 0.72rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--map-ink-soft);
+}
+
+.map-hud__note:empty {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .map-hud__note {
+    display: none;
+  }
+}
+
+/* The briefing folds away so the accept button stays above the fold. */
+.threat-fold {
+  margin-top: 0.7rem;
+}
+
+.threat-fold summary {
+  font-size: 0.76rem;
+  font-style: italic;
+  color: var(--map-ink-soft);
+  cursor: pointer;
+  list-style: none;
+}
+
+.threat-fold summary::-webkit-details-marker {
+  display: none;
+}
+
+.threat-fold summary::before {
+  content: '▸ ';
+  font-style: normal;
+}
+
+.threat-fold[open] summary::before {
+  content: '▾ ';
+}
+
+.castle-card__mission {
+  order: 0;
+}
+
+/* During a mission the rail belongs to the fight. */
+.map-rail[data-mission='on'] .map-hud__note,
+.map-rail[data-mission='on'] .map-hud__title p {
+  display: none;
+}
+
+.map-rail[data-mission='on'] .map-hud__title h1 {
+  font-size: 0.95rem;
+}
